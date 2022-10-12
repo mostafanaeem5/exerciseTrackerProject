@@ -115,17 +115,10 @@ app.get('/api/users/:_id/logs', (req, res) => {
                 }),
             });
         });
-    //res.json(logs);
 });
 
-mongoose
-    .connect(
-        'mongodb+srv://naeemo:01024262282@cluster0.41oyvwd.mongodb.net/?retryWrites=true&w=majority'
-    )
-    .then((result) => {
-        const listener = app.listen(process.env.PORT || 3000, () => {
-            console.log(
-                'Your app is listening on port ' + listener.address().port
-            );
-        });
+mongoose.connect(process.env.MONGO_URI).then((result) => {
+    const listener = app.listen(process.env.PORT || 3000, () => {
+        console.log('Your app is listening on port ' + listener.address().port);
     });
+});
